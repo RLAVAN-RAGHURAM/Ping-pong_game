@@ -1,0 +1,51 @@
+body{
+background-size:cover;
+}
+#heading{
+background-color:blue;
+color:green;
+padding:5px;
+margin:30px;
+width:50%;
+border-radius:20px;
+border:5px red solid;
+box-shadow:7px 7px 7px white;
+}
+#help{
+padding:4px;
+margin-left:10px;
+margin-top:10px;
+background:blue;
+color:gray;
+box-shadow:6px 6px 6px blue;
+}
+#Play{
+padding:8px;
+font-size:15px;
+background-color:red;
+box-shadow:3px 3px 3px blue;
+border-radius:20px;
+}
+#Results{
+padding:8px;
+font-size:15px;
+background-color:red;
+box-shadow:3px 3px 3px blue;
+border-radius:20px;
+}
+#restart{
+padding:8px;
+font-size:15px;
+background-color:blue;
+box-shadow:3px 3px 3px red;
+border-radius:20px;
+}
+h4{
+background-color:blue;
+margin-top:275px;
+line-height:2;
+margin-bottom:0px;
+}
+#canvas{
+margin-top:450px;
+}
