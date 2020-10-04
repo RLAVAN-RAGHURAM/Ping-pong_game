@@ -1,32 +1,58 @@
-function preload(){
-}
-function setup(){
-canvas=createCanvas(600,500);
-canvas.center();
-canvas.parent("canvas");
+rightWristY = 0;
+rightWristX = 0;
+scoreRightWrist = 0;
 
-video=createCapture(VIDEO);
+game_status = "";
+
+
+ function preload() {
+
+}
+
+function setup(){
+var canvas =  createCanvas(700,600);
+canvas.parent('canvas');
+
+video = createCapture(VIDEO);
+video.size(700, 600);
 video.hide();
 
+poseNet = ml5.poseNet(video, modelLoaded);
+poseNet.on('pose', gotPoses);
+}
 
-poseNet = ml5.poseNet(video,modelLoaded);
-poseNet.on('pose',gotresults);
+function modelLoaded() {
+  console.log('PoseNet Is Initialized');
 }
-function  modelLoaded(){
-console.log("PoseNet is loaded");
-}
-function gotresults(results)
+
+function gotPoses(results)
 {
-if(results){
-console.log(results);
-rightwristY = results[0].pose.rightWrist.y;
-rightwristX = results[0].pose.rightWrist.x;
-if(rightwristX>0){
-circle(rightwristX, rightwristY,10); 
-} 
+  if(results.length > 0)
+  {
+
+    rightWristY = results[0].pose.rightWrist.y;
+    rightWristX = results[0].pose.rightWrist.x;
+    scoreRightWrist =  results[0].pose.keypoints[10].score;
+    console.log(scoreRightWrist);
+    console.log(results);
+  }
 }
+
+function startGame()
+{
+  game_status = "start";
+  document.getElementById("Results").innerHTML = "Game Is Loading";
 }
+
 function draw(){
-console.log("rcds");
-image(video,0,0,600,400);
+
+  image(video, 0, 0, 700, 600);
+
+
+  if(scoreRightWrist > 0.2)
+  {
+    fill("red");
+    stroke("red");
+    circle(rightWristX, rightWristY, 30);
+  }
 }
